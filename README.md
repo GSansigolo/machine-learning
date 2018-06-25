@@ -1,2 +1,2 @@
 # Machine-Learning
-This repository contains the codes in Python developed in the Machine Learning practical course. Codes such as  linear regression, K Nearest Neighbors, Support Vector Machines (SVM), flat clustering, hierarchical clustering, and neural networks.
+This repository contains the codes in python developed in the machine learning practical course. Codes such as linear Regression, K Nearest Neighbors, Support Vector Machines (SVM), Flat Clustering, Hierarchical Clustering, and Neural Networks. 
