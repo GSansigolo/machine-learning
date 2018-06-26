@@ -12,6 +12,7 @@ from sklearn.linear_model import LinearRegression
 import datetime
 import matplotlib.pyplot as plt
 from matplotlib import style
+import pickle
 
 style.use('ggplot')
 
@@ -45,6 +46,13 @@ X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_
 
 clf = LinearRegression(n_jobs=10)
 clf.fit(X_train, y_train)
+
+with open('linearregrassion.pickle','wb') as f:
+	pickle.dump(clf, f)
+
+pickle_in = open('linearregrassion.pickle','rb')
+clf = pickle.load(pickle_in)
+
 accuracy = clf.score(X_test, y_test)
 
 forecast_set = clf.predict(X_lately)
