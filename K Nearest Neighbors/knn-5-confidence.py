@@ -1,5 +1,5 @@
 '''
-Created on Jun 29, 2018
+Created on Jul 01, 2018
 Author: @G_Sansigolo
 '''
 
@@ -20,6 +20,8 @@ def k_nearest_neighbors(data, predict, k=3):
 			distances.append([euclidean_distance, group])
 	votes = [i[1] for i in sorted(distances) [:k]]
 	votes_result = Counter(votes).most_common(1)[0][0]
+	confidence = Counter(votes).most_common(1)[0][1] / k
+	print
 	return votes_result
 
 df = pd.read_csv('breast-cancer-wisconsin.data')
