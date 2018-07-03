@@ -1,5 +1,5 @@
 '''
-Created on Jul 01, 2018
+Created on Jul 03, 2018
 Author: @G_Sansigolo
 '''
 
@@ -21,11 +21,11 @@ def k_nearest_neighbors(data, predict, k=3):
 	votes = [i[1] for i in sorted(distances) [:k]]
 	votes_result = Counter(votes).most_common(1)[0][0]
 	confidence = Counter(votes).most_common(1)[0][1] / k
-	print
-	return votes_result
+	print('Confidence:', confidence)
+	return votes_result, confidence
 
 df = pd.read_csv('breast-cancer-wisconsin.data')
-df.replace('?',-99999, inplace=True)
+df.replace('?',-99999, inplace=True) 
 df.drop(['id'], 1, inplace=True)
 full_data = df.astype(float).values.tolist()
 random.shuffle(full_data)
@@ -47,7 +47,7 @@ total = 0
 
 for group in test_set:
 	for data in test_set[group]:
-		vote = k_nearest_neighbors(train_set, data, k=5)
+		vote, confidence = k_nearest_neighbors(train_set, data, k=5)
 		if group == vote:
 			correct+=1
 		total+=1
