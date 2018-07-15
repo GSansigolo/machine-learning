@@ -102,11 +102,12 @@ class Support_Vector_Machine:
         # sign( x.w+b )
         classification = np.sign(np.dot(np.array(features),self.w)+self.b)
         if classification !=0 and self.visualization:
-            self.ax.scatter(features[0], features[1], s=200, marker='*', c=self.colors[classification])
+        	self.ax.scatter(features[0], features[1], s=200, marker='*', c=self.colors[classification])
         return classification
 
     def visualize(self):
         [[self.ax.scatter(x[0],x[1],s=100,color=self.colors[i]) for x in data_dict[i]] for i in data_dict]
+
 
         # hyperplane = x.w+b
         # v = x.w+b
@@ -124,26 +125,39 @@ class Support_Vector_Machine:
         # positive support vector hyperplane
         psv1 = hyperplane(hyp_x_min, self.w, self.b, 1)
         psv2 = hyperplane(hyp_x_max, self.w, self.b, 1)
-        self.ax.plot([hyp_x_min,hyp_x_max],[psv1,psv2], 'k')
+        self.ax.plot([hyp_x_min,hyp_x_max],[psv1,psv2], 'r--')
 
         # (w.x+b) = -1
         # negative support vector hyperplane
         nsv1 = hyperplane(hyp_x_min, self.w, self.b, -1)
         nsv2 = hyperplane(hyp_x_max, self.w, self.b, -1)
-        self.ax.plot([hyp_x_min,hyp_x_max],[nsv1,nsv2], 'k')
+        self.ax.plot([hyp_x_min,hyp_x_max],[nsv1,nsv2], 'b--')
 
         # (w.x+b) = 0
         # positive support vector hyperplane
         db1 = hyperplane(hyp_x_min, self.w, self.b, 0)
         db2 = hyperplane(hyp_x_max, self.w, self.b, 0)
-        self.ax.plot([hyp_x_min,hyp_x_max],[db1,db2], 'y--')
+        self.ax.plot([hyp_x_min,hyp_x_max],[db1,db2], 'g--')
 
         plt.show()
-        
+        																																																																																																																																																		
 data_dict = {-1:np.array([[1,7], [2,8], [3,8]]), 1:np.array([[5,1], [6,-1], [7,3]])}
 
 svm = Support_Vector_Machine()
 svm.fit(data=data_dict)
+
+predict_us = [[0,10],
+	      [1,3],
+	      [3,4],
+	      [3,5],
+	      [5,5],
+	      [5,6],
+	      [6,-5],
+	      [5,8],]
+
+for p in predict_us:
+	svm.predict(p)
+	
 svm.visualize()
 
 
