@@ -38,7 +38,7 @@ class K_Means:
 				self.classifications[i] = []
 			
 			for featureset in data:
-				distances = [np.linalg.norm(featureset-self.centroids[centroids]) fr centroid in self.centroids]
+				distances = [np.linalg.norm(featureset-self.centroids[centroids]) for centroid in self.centroids]
 				classification = distances.index(min(distances))
 				self.classifications[classification].append(featureset)
 			prev_centroids = dict(self.centroids)
